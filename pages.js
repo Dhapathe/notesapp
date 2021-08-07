@@ -6,7 +6,7 @@ const { title } = require('process');
 
 var fetchNotes =()=>{
     try {
-        return JSON.parse(fs.readFileSync("main.txt"));
+        return JSON.parse(fs.readFileSync("main.json"));
     }catch(err){
         return[];
     }
@@ -28,7 +28,7 @@ var addingNote = (title, content)=> {
     if(repeatTitle.length === 0){
 
         notes.push(note);
-        fs.writeFileSync("main.txt", JSON.stringify(notes) ); 
+        fs.writeFileSync("main.json", JSON.stringify(notes) ); 
         console.log(note);
         console.log('\nNew Note Added Successfully!\n');
 
@@ -46,7 +46,7 @@ var removeNote=(title)=>{
     var notes =fetchNotes() ;
     
     var filteredNotes =  notes.filter((note)=>note.title !== title);
-    fs.writeFileSync("main.txt", JSON.stringify(filteredNotes) ); 
+    fs.writeFileSync("main.json", JSON.stringify(filteredNotes) ); 
 }
 
 var readNote = (title) =>{
@@ -74,3 +74,4 @@ module.exports = {
     readNote,
     listNote
 }
+
